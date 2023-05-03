@@ -31,10 +31,10 @@ namespace RhythmsGonnaGetYou
                 {
                     Name = bandName,
                     CountryOfOrigin = Menu.PromptForString("What is the country of origin? "),
-                    NumberOfMembers = 1,
+                    NumberOfMembers = Menu.PromptForInteger("How many members are there in the band?"),
                     Website = Menu.PromptForString("What is their website? "),
                     Style = Menu.PromptForString("What is their style? "),
-                    IsSigned = true,
+                    IsSigned = Menu.PromptForBoolean("Is the band signed? y/n"),
                     ContactName = Menu.PromptForString("What is the contact name? "),
                     ContactPhoneNumber = Menu.PromptForString("What is their contact phone number? ")
                 };
