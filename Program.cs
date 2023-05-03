@@ -13,12 +13,7 @@ namespace RhythmsGonnaGetYou
             var context = new RhythmsGonnaGetYouContext();
             Menu.Options(context);
 
-            //var bandCount = context.Bands.Count();
-            //Console.WriteLine($"There are {bandCount} bands!");
-
-
         }
-
 
     }
 }

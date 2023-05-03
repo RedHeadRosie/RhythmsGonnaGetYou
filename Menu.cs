@@ -12,11 +12,10 @@ namespace RhythmsGonnaGetYou
             switch (response)
             {
                 case 1:
-                    AddBand(context);
+                    Band.NewBand(context);
                     break;
 
                 case 2:
-                    //Console.WriteLine("debug");
                     ViewBandsMenu(context);
                     break;
 
@@ -44,6 +43,7 @@ namespace RhythmsGonnaGetYou
                     break;
 
                 default:
+                    Options(context);
                     break;
             }
 
@@ -102,19 +102,16 @@ namespace RhythmsGonnaGetYou
                     break;
 
                 case 4:
+                    Options(context);
                     break;
 
                 default:
+                    Options(context);
                     break;
 
             }
 
 
-        }
-
-        private static void AddBand(RhythmsGonnaGetYouContext context)
-        {
-            throw new NotImplementedException();
         }
 
         private static void ViewUnsignedBands(RhythmsGonnaGetYouContext context)
@@ -167,6 +164,13 @@ namespace RhythmsGonnaGetYou
             }
         }
 
+        public static string PromptForString(string prompt)
+        {
+            Console.Write(prompt);
+            var userInput = Console.ReadLine();
+
+            return userInput;
+        }
 
     }
 }
