@@ -8,8 +8,8 @@ namespace RhythmsGonnaGetYou
         public int Id { get; set; }
         public int TrackNumber { get; set; }
         public string Title { get; set; }
-        public int Duration { get; set; }
         public int AlbumId { get; set; }
+        public string Duration { get; set; }
 
         public Album Album { get; set; }
 
@@ -50,7 +50,7 @@ namespace RhythmsGonnaGetYou
                         var songTrack = Menu.PromptForInteger("What is the track number for this song? ");
                         var checkTrackNumber = context.Songs.FirstOrDefault(song => song.TrackNumber == songTrack);
 
-                        if (checkTrackNumber != null)
+                        if (checkTrackNumber != null && checkBandName.Id == checkAlbumName.BandId && checkAlbumName.Id == checkTrackNumber.AlbumId)
                         {
                             Console.WriteLine("There is already a song for this track number in this album. ");
                         }
@@ -60,8 +60,8 @@ namespace RhythmsGonnaGetYou
                             {
                                 TrackNumber = songTrack,
                                 Title = songName,
-                                Duration = Menu.PromptForInteger("What is the duration of this song? "),
-                                AlbumId = checkAlbumName.Id
+                                AlbumId = checkAlbumName.Id,
+                                Duration = Menu.PromptForString("What is the duration of this song? ")
 
                             };
                             context.Songs.Add(newSong);
