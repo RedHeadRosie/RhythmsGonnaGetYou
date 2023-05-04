@@ -33,25 +33,24 @@ namespace RhythmsGonnaGetYou
 
                     case 4:
                         //to do
-                        AddNewSong(context);
+                        Song.AddNewSong(context);
                         response = 0;
                         break;
 
                     case 5:
-                        //to do
-                        DropBand(context);
+                        //Need to fix loop
+                        Band.DropBand(context);
                         response = 0;
                         break;
 
                     case 6:
-                        //to do
-                        SignBand(context);
+                        //Need to fix loop
+                        Band.SignBand(context);
                         response = 0;
                         break;
 
                     case 7:
                         //Need to fix loop
-                        //Album.ViewAlbumsbyBand(context);
                         ViewAlbumMenu(context);
                         response = 0;
                         break;
@@ -95,21 +94,6 @@ namespace RhythmsGonnaGetYou
                     Options(context);
                     break;
             }
-        }
-
-        private static void SignBand(RhythmsGonnaGetYouContext context)
-        {
-            throw new NotImplementedException();
-        }
-
-        private static void DropBand(RhythmsGonnaGetYouContext context)
-        {
-            throw new NotImplementedException();
-        }
-
-        private static void AddNewSong(RhythmsGonnaGetYouContext context)
-        {
-            throw new NotImplementedException();
         }
 
         private static void ViewBandsMenu(RhythmsGonnaGetYouContext context)
@@ -232,7 +216,6 @@ namespace RhythmsGonnaGetYou
             }
 
         }
-
 
     }
 }

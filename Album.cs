@@ -14,28 +14,30 @@ namespace RhythmsGonnaGetYou
 
         public Band Band { get; set; }
 
-        internal static void NewAlbum(RhythmsGonnaGetYouContext context)
+        public static void NewAlbum(RhythmsGonnaGetYouContext context)
         {
-
+            //IS THE BAND ALREADY ADDED TO THE DATABASE?
             var albumBandName = Menu.PromptForString("What is the name of the band this album belongs to? ");
             var checkBandName = context.Bands.FirstOrDefault(band => band.Name.ToUpper() == albumBandName.ToUpper());
 
             if (checkBandName == null)
             {
+                //IF NO, EXIT
                 Console.WriteLine("This band is not in the database, please add this first.");
             }
             else
             {
+                //IF YES, IS THE ALBUM ALREADY IN THE DATABASE?
                 var albumName = Menu.PromptForString("What is the title of the album? ");
                 var checkAlbumName = context.Albums.FirstOrDefault(album => album.Title.ToUpper() == albumName.ToUpper());
 
                 if (checkAlbumName != null)
                 {
+                    //IF NO, EXIT
                     Console.WriteLine("This album is already in the database, you can't add it again.");
                 }
                 else
                 {
-
                     var releaseDate = Menu.PromptForString("What is the release date? mm/dd/yyyy ");
                     var parseDate = DateTime.Parse(releaseDate);
 
@@ -55,35 +57,53 @@ namespace RhythmsGonnaGetYou
 
         public static void ViewAlbumsByBand(RhythmsGonnaGetYouContext context)
         {
-            foreach (var obj in context.Albums)
+            // foreach (var obj in context.Albums)
+            // {
+            //     Console.WriteLine($"There is an album called {obj.Title}");
+            // }
+
+
+            var albumBandName = Menu.PromptForString("What is the name of the band that you would like to see the albums for? ");
+            var checkBandName = context.Bands.FirstOrDefault(band => band.Name.ToUpper() == albumBandName.ToUpper());
+
+            if (checkBandName == null)
             {
-                Console.WriteLine($"There is an album called {obj.Title}");
+                Console.WriteLine("This band is not in the database, soz");
             }
+            else
+            {
+                int albumIdInt = checkBandName.Id;
 
-
-            // NOT NECESSARY FOR TASK, WILL RETURN TO WITH MORE TIME
-            // var albumBandName = Menu.PromptForString("What is the name of the band that you would like to see the albums for? ");
-            // var checkBandName = context.Bands.FirstOrDefault(band => band.Name.ToUpper() == albumBandName.ToUpper());
-
-            // if (checkBandName == null)
-            // {
-            //     Console.WriteLine("This band is not in the database, soz");
-            // }
-            // else
-            // {
-            //     var AlbumNames = new List<string> { };
-            //     // HERE IS WHERE I WOULD PRINT OUT ALBUMS WITH MATCHING BAND NAME
-            //     // foreach (var obj in context.Albums)
-            //     // {
-            //     //     Console.WriteLine($"There is an album called {obj.Title}");
-            //     // }
-            // }
-
+                foreach (var obj in context.Albums)
+                {
+                    if (albumIdInt == obj.BandId)
+                    {
+                        Console.WriteLine($"There is an album called {obj.Title} by {checkBandName.Name}. ");
+                    }
+                }
+            }
         }
 
-        internal static void ViewAlbumsByRD(RhythmsGonnaGetYouContext context)
+        public static void ViewAlbumsByRD(RhythmsGonnaGetYouContext context)
         {
-            throw new NotImplementedException();
+            var albumRD = Menu.PromptForString("What is the release date (mm/dd/yyyy) you would like to see the albums for? ");
+            var parseRDate = DateTime.Parse(albumRD);
+            var checkRD = context.Albums.FirstOrDefault(album => album.ReleaseDate == parseRDate);
+
+            if (checkRD == null)
+            {
+                Console.WriteLine("There are no albums with that release date in the database");
+            }
+            else
+            {
+                foreach (var obj in context.Albums)
+                {
+                    if (parseRDate == obj.ReleaseDate)
+                    {
+                        Console.WriteLine($"There is an album called {obj.Title} that was released {checkRD.ReleaseDate}. ");
+                    }
+                }
+            }
         }
     }
 }
