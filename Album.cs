@@ -1,6 +1,6 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace RhythmsGonnaGetYou
 {
@@ -16,8 +16,8 @@ namespace RhythmsGonnaGetYou
 
         internal static void NewAlbum(RhythmsGonnaGetYouContext context)
         {
+
             var albumBandName = Menu.PromptForString("What is the name of the band this album belongs to? ");
-            //ADD FUNCTION TO FIND BAND ID
             var checkBandName = context.Bands.FirstOrDefault(band => band.Name.ToUpper() == albumBandName.ToUpper());
 
             if (checkBandName == null)
@@ -35,12 +35,15 @@ namespace RhythmsGonnaGetYou
                 }
                 else
                 {
+
+                    var releaseDate = Menu.PromptForString("What is the release date? mm/dd/yyyy ");
+                    var parseDate = DateTime.Parse(releaseDate);
+
                     var newAlbum = new Album
                     {
                         Title = albumName,
                         IsExplicit = Menu.PromptForBoolean("Is this album explicit? "),
-                        //ADD FUNCTION TO CHECK THE FORMATTING OF DATE
-                        ReleaseDate = Menu.PromptForDateTime("What is the release date? "),
+                        ReleaseDate = parseDate,
                         BandId = checkBandName.Id
                     };
                     context.Albums.Add(newAlbum);
@@ -48,8 +51,39 @@ namespace RhythmsGonnaGetYou
                 }
             }
 
+        }
+
+        public static void ViewAlbumsByBand(RhythmsGonnaGetYouContext context)
+        {
+            foreach (var obj in context.Albums)
+            {
+                Console.WriteLine($"There is an album called {obj.Title}");
+            }
 
 
+            // NOT NECESSARY FOR TASK, WILL RETURN TO WITH MORE TIME
+            // var albumBandName = Menu.PromptForString("What is the name of the band that you would like to see the albums for? ");
+            // var checkBandName = context.Bands.FirstOrDefault(band => band.Name.ToUpper() == albumBandName.ToUpper());
+
+            // if (checkBandName == null)
+            // {
+            //     Console.WriteLine("This band is not in the database, soz");
+            // }
+            // else
+            // {
+            //     var AlbumNames = new List<string> { };
+            //     // HERE IS WHERE I WOULD PRINT OUT ALBUMS WITH MATCHING BAND NAME
+            //     // foreach (var obj in context.Albums)
+            //     // {
+            //     //     Console.WriteLine($"There is an album called {obj.Title}");
+            //     // }
+            // }
+
+        }
+
+        internal static void ViewAlbumsByRD(RhythmsGonnaGetYouContext context)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
@@ -14,8 +15,15 @@ namespace RhythmsGonnaGetYou
         {
             optionsBuilder.UseNpgsql("server=localhost;database=RhythmsGonnaGetYou");
 
-            var loggerFactory = LoggerFactory.Create(builder => builder.AddConsole());
-            optionsBuilder.UseLoggerFactory(loggerFactory);
+            // var loggerFactory = LoggerFactory.Create(builder => builder.AddConsole());
+            // optionsBuilder.UseLoggerFactory(loggerFactory);
+
+
+        }
+        static RhythmsGonnaGetYouContext()
+        {
+            AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
         }
     }
+
 }

@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 
 namespace RhythmsGonnaGetYou
 {
@@ -17,52 +18,83 @@ namespace RhythmsGonnaGetYou
                 {
                     case 1:
                         Band.NewBand(context);
+                        response = 0;
                         break;
 
                     case 2:
                         ViewBandsMenu(context);
+                        response = 0;
                         break;
 
                     case 3:
-                        //to do
                         Album.NewAlbum(context);
+                        response = 0;
                         break;
 
                     case 4:
                         //to do
                         AddNewSong(context);
+                        response = 0;
                         break;
 
                     case 5:
                         //to do
                         DropBand(context);
+                        response = 0;
                         break;
 
                     case 6:
                         //to do
                         SignBand(context);
+                        response = 0;
                         break;
 
                     case 7:
-                        //to do
-                        ViewAlbums(context);
+                        //Need to fix loop
+                        //Album.ViewAlbumsbyBand(context);
+                        ViewAlbumMenu(context);
+                        response = 0;
                         break;
 
                     case 8:
                         activeMenu = false;
+                        response = 0;
                         break;
 
                     default:
-                        Options(context);
+                        //Options(context);
+                        response = 0;
                         break;
                 }
             }
+            Console.WriteLine("Later Gator! ");
 
         }
 
-        private static void ViewAlbums(RhythmsGonnaGetYouContext context)
+        private static void ViewAlbumMenu(RhythmsGonnaGetYouContext context)
         {
-            throw new NotImplementedException();
+            var vOOutput = PromptForInteger("How do you want to view the albums?\n1. view all the albums for a band\n2. view all albums ordered by release date\n3. return to main menu\n");
+
+            switch (vOOutput)
+            {
+                case 1:
+                    Album.ViewAlbumsByBand(context);
+                    vOOutput = 0;
+                    break;
+
+                case 2:
+                    Album.ViewAlbumsByRD(context);
+                    vOOutput = 0;
+                    break;
+
+                case 3:
+                    Options(context);
+                    break;
+
+                default:
+                    Options(context);
+                    break;
+            }
         }
 
         private static void SignBand(RhythmsGonnaGetYouContext context)
@@ -201,9 +233,6 @@ namespace RhythmsGonnaGetYou
 
         }
 
-        internal static DateTime PromptForDateTime(string v)
-        {
-            throw new NotImplementedException();
-        }
+
     }
 }
