@@ -61,19 +61,17 @@ namespace RhythmsGonnaGetYou
                                 TrackNumber = songTrack,
                                 Title = songName,
                                 AlbumId = checkAlbumName.Id,
-                                Duration = Menu.PromptForString("What is the duration of this song? ")
+                                Duration = Menu.PromptForString("What is the duration of this song? mm:ss ")
 
                             };
                             context.Songs.Add(newSong);
                             context.SaveChanges();
                         }
-
-
                     }
-
-
                 }
             }
+            Console.WriteLine("");
+            Menu.Options(context);
         }
     }
 }

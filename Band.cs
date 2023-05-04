@@ -31,16 +31,18 @@ namespace RhythmsGonnaGetYou
                 {
                     Name = bandName,
                     CountryOfOrigin = Menu.PromptForString("What is the country of origin? "),
-                    NumberOfMembers = Menu.PromptForInteger("How many members are there in the band?"),
+                    NumberOfMembers = Menu.PromptForInteger("How many members are there in the band? "),
                     Website = Menu.PromptForString("What is their website? "),
                     Style = Menu.PromptForString("What is their style? "),
-                    IsSigned = Menu.PromptForBoolean("Is the band signed? y/n"),
+                    IsSigned = Menu.PromptForBoolean("Is the band signed? y/n "),
                     ContactName = Menu.PromptForString("What is the contact name? "),
                     ContactPhoneNumber = Menu.PromptForString("What is their contact phone number? ")
                 };
                 context.Bands.Add(newBand);
                 context.SaveChanges();
             }
+            Console.WriteLine("");
+            Menu.Options(context);
         }
 
         public static void DropBand(RhythmsGonnaGetYouContext context)
@@ -76,6 +78,8 @@ namespace RhythmsGonnaGetYou
                 }
                 context.SaveChanges();
             }
+            Console.WriteLine("");
+            Menu.Options(context);
         }
 
         public static void SignBand(RhythmsGonnaGetYouContext context)
@@ -111,6 +115,8 @@ namespace RhythmsGonnaGetYou
                 }
                 context.SaveChanges();
             }
+            Console.WriteLine("");
+            Menu.Options(context);
         }
     }
 

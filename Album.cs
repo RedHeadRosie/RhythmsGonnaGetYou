@@ -52,7 +52,8 @@ namespace RhythmsGonnaGetYou
                     context.SaveChanges();
                 }
             }
-
+            Console.WriteLine("");
+            Menu.Options(context);
         }
 
         public static void ViewAlbumsByBand(RhythmsGonnaGetYouContext context)
@@ -82,6 +83,8 @@ namespace RhythmsGonnaGetYou
                     }
                 }
             }
+            Console.WriteLine("");
+            Menu.Options(context);
         }
 
         public static void ViewAlbumsByRD(RhythmsGonnaGetYouContext context)
@@ -104,6 +107,8 @@ namespace RhythmsGonnaGetYou
                     }
                 }
             }
+            Console.WriteLine("");
+            Menu.Options(context);
         }
     }
 }

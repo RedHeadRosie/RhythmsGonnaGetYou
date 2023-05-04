@@ -7,7 +7,6 @@ namespace RhythmsGonnaGetYou
     {
         public static void Options(RhythmsGonnaGetYouContext context)
         {
-
             Boolean activeMenu = true;
 
             var response = PromptForInteger("Main Menu\n1. add a new band\n2. view all bands\n3. add a new album for a band\n4. add a song to an album\n5. let a band go\n6. sign a band\n7. view all albums\n8. quit\n");
@@ -32,7 +31,7 @@ namespace RhythmsGonnaGetYou
                         break;
 
                     case 4:
-                        //to do
+                        //still needs to loop
                         Song.AddNewSong(context);
                         response = 0;
                         break;
@@ -55,19 +54,19 @@ namespace RhythmsGonnaGetYou
                         response = 0;
                         break;
 
-                    case 8:
-                        activeMenu = false;
-                        response = 0;
-                        break;
+                    // case 8:
+                    //     activeMenu = false;
+                    //     response = 0;
+                    //     //break;
 
                     default:
                         //Options(context);
+                        activeMenu = false;
                         response = 0;
                         break;
                 }
             }
             Console.WriteLine("Later Gator! ");
-
         }
 
         private static void ViewAlbumMenu(RhythmsGonnaGetYouContext context)
@@ -145,6 +144,8 @@ namespace RhythmsGonnaGetYou
                     Console.WriteLine($"There is a band called {obj.Name} that is not signed.");
                 }
             }
+            Console.WriteLine("");
+            Options(context);
         }
 
         private static void ViewSignedBands(RhythmsGonnaGetYouContext context)
@@ -156,6 +157,8 @@ namespace RhythmsGonnaGetYou
                     Console.WriteLine($"There is a band called {obj.Name} that is signed.");
                 }
             }
+            Console.WriteLine("");
+            Options(context);
         }
 
         private static void ViewAllBands(RhythmsGonnaGetYouContext context)
@@ -164,6 +167,8 @@ namespace RhythmsGonnaGetYou
             {
                 Console.WriteLine($"There is a band called {obj.Name}");
             }
+            Console.WriteLine("");
+            Options(context);
         }
 
         public static int PromptForInteger(string prompt)
